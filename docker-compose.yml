@@ -308,6 +308,19 @@ services:
     restart: unless-stopped
     profiles:
       - milvus
+  api.openai.com:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: WeKnora-litellm
+    ports:
+      - "4000:4000"
+    environment:
+      - AZURE_AI_API_KEY=${AZURE_AI_API_KEY:-}
+    volumes:
+      - ./config/llm-config.yaml:/app/config.yaml
+    networks:
+      - WeKnora-network
+    command: ["--config", "/app/config.yaml"]
+    restart: unless-stopped
 
 networks:
   WeKnora-network:

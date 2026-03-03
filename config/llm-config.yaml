@@ -1,0 +1,41 @@
+general_settings: 
+  #master_key: sk-1234 # [OPTIONAL] Only use this if you to require all calls to contain this key (Authorization: Bearer sk-1234)  
+  
+litellm_settings: # module level litellm settings - https://github.com/BerriAI/litellm/blob/main/litellm/__init__.py
+  drop_params: True
+  success_callback: ["langfuse"] # OPTIONAL - if you want to start sending LLM Logs to Langfuse. Make sure to set `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` in your env
+
+model_list:  
+  - model_name: gpt-5.1-chat
+    litellm_params:
+       model: azure/gpt-5.1-chat
+       api_base: "https://flezikb-resource.openai.azure.com/"
+       api_key: os.environ/AZURE_AI_API_KEY
+       api_version: "2025-04-01-preview"
+       
+  - model_name: text-embedding-3-small
+    litellm_params:
+       model: azure/text-embedding-3-small
+       api_base: "https://flezikb-resource.openai.azure.com/"
+       api_key: os.environ/AZURE_AI_API_KEY
+       api_version: "2024-12-01-preview"
+
+  - model_name: Cohere-rerank-v4.0-fast
+    litellm_params:
+       model: azure_ai/Cohere-rerank-v4.0-fast
+       api_base: "https://flezikb-resource.services.ai.azure.com/"
+       api_key: os.environ/AZURE_AI_API_KEY
+
+  - model_name: gpt-5.2
+    litellm_params:
+       model: azure/gpt-5.2
+       api_base: "https://flezikb-resource.openai.azure.com/"
+       api_key: os.environ/AZURE_AI_API_KEY
+       api_version: "2025-04-01-preview"
+
+  - model_name: model-router
+    litellm_params:
+      model: azure/model-router
+      api_base: "https://flezikb-resource.openai.azure.com/"
+      api_key: os.environ/AZURE_AI_API_KEY
+      api_version: "2025-04-01-preview" 
